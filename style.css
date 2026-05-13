@@ -1,4 +1,4 @@
-/* ================= GLOBAL STYLES ================= */
+/* ================= GLOBAL RESET ================= */
 * {
     margin: 0;
     padding: 0;
@@ -15,11 +15,10 @@ body {
     display: none !important; 
 }
 
-/* ================= LOGIN SCREEN ================= */
+/* ================= LOGIN UI ================= */
 .login-body {
-    /* ব্যাকগ্রাউন্ডে আবছা লোগো ওয়াটারমার্ক অ্যাড করা হয়েছে */
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.95)), 
-                url('https://blog.daffodilvarsity.edu.bd/images/logo.png') no-repeat center;
+                url('diu_logo.png') no-repeat center;
     background-size: 380px;
     background-blend-mode: overlay;
     height: 100vh;
@@ -107,7 +106,7 @@ body {
     background-color: #003366;
 }
 
-/* ================= PORTAL INTERFACE ================= */
+/* ================= SYSTEM INTERFACE ================= */
 .portal-container { 
     display: flex; 
     flex-direction: column; 
@@ -115,7 +114,7 @@ body {
     background-color: #f1f5f9; 
 }
 
-/* Header Area */
+/* Top Navigation Bar */
 .header {
     background-color: #004b87; 
     color: white; 
@@ -158,13 +157,13 @@ body {
     background-color: #b91c1c;
 }
 
-/* Main Layout Structure */
+/* Main Content Structure Layout */
 .main-wrapper { 
     display: flex; 
     flex: 1; 
 }
 
-/* Sidebar Navigation */
+/* Sidebar Styling Options */
 .sidebar { 
     width: 240px; 
     background-color: #001f3f; 
@@ -190,13 +189,12 @@ body {
     border-left: 4px solid #38bdf8;
 }
 
-/* Core Content Window */
+/* Workspace Core Screen */
 .content { 
     flex: 1; 
     padding: 25px; 
-    /* কন্টেন্ট এরিয়ার ব্যাকগ্রাউন্ডে প্রিমিয়াম ওয়াটারমার্ক সেট করা হয়েছে */
     background: linear-gradient(rgba(241, 245, 249, 0.94), rgba(241, 245, 249, 0.94)), 
-                url('https://blog.daffodilvarsity.edu.bd/images/logo.png') no-repeat center fixed;
+                url('diu_logo.png') no-repeat center fixed;
     background-size: 320px;
     overflow-y: auto;
 }
@@ -218,7 +216,7 @@ body {
     margin-bottom: 20px; 
 }
 
-/* ================= DASHBOARD STAT CARDS ================= */
+/* ================= DASHBOARD SYSTEM CARDS ================= */
 .dashboard-cards { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
@@ -253,7 +251,7 @@ body {
     font-weight: bold; 
 }
 
-/* ================= STUDENT PROFILE VIEW ================= */
+/* ================= STUDENT PROFILE CARD LAYER ================= */
 .profile-card { 
     background: white; 
     padding: 25px; 
@@ -335,7 +333,7 @@ body {
     font-weight: 600;
 }
 
-/* ================= CGPA BAR GRAPH CHART ================= */
+/* ================= SECTOR BAR PERFORMANCE CHART ================= */
 .chart-container { 
     display: flex; 
     justify-content: space-around; 
@@ -379,7 +377,7 @@ body {
     font-weight: 500;
 }
 
-/* ================= CLASS ROUTINE SYSTEM ================= */
+/* ================= CLASS ROUTINE GRID DATA ================= */
 .routine-table { 
     width: 100%; 
     border-collapse: collapse; 
@@ -398,7 +396,7 @@ body {
     color: #334155;
 }
 
-/* ================= SYSTEM FOOTER CREDIT ================= */
+/* ================= OVERALL SYSTEM FOOTER ================= */
 .footer { 
     background-color: #1e293b; 
     color: #94a3b8; 
@@ -407,7 +405,7 @@ body {
     font-size: 11px; 
 }
 
-/* ================= MOBILE RESPONSIVE LAYOUT ================= */
+/* ================= SCREEN SIZE MEDIA QUERIES (MOBILE) ================= */
 @media (max-width: 768px) {
     .main-wrapper { 
         flex-direction: column; 
@@ -431,7 +429,7 @@ body {
     }
     .content {
         padding: 15px;
-        background-size: 220px; /* মোবাইলে লোগো সাইজ ছোট করা হয়েছে */
+        background-size: 220px;
     }
     .profile-card { 
         flex-direction: column; 
