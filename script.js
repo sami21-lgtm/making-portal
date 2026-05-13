@@ -1,4 +1,4 @@
-// আপনার রিয়েল সব ইনফরমেশন অবজেক্ট ডাটা
+// আপনার সব ডাটা অবজেক্ট আকারে এখানে সেভ করা থাকবে
 const studentData = {
     id: "242-35-744",
     password: "1234",
@@ -15,26 +15,27 @@ const studentData = {
     address: "Dhaka, Bangladesh"
 };
 
-// SS ৩ এর ডাটা ধরে ফর্ম সাবমিট ইভেন্ট হ্যান্ডলার রেন্ডারিং
+// HTML পেজটি ব্রাউজারে পুরোপুরি রেডি হলে এই ইভেন্টটি কাজ শুরু করবে
 document.addEventListener("DOMContentLoaded", function() {
     const loginForm = document.getElementById('loginForm');
     
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // ব্রাউজার স্ক্রিন রিফ্রেশ লক
+            e.preventDefault(); // ফর্ম সাবমিট হয়ে স্ক্রিন রিফ্রেশ হওয়া বন্ধ করবে
             
-            // HTML থেকে আইডি ও পাসওয়ার্ড ইনপুট রিড করা
+            // HTML এর ইনপুট বক্স থেকে আইডি আর পাসওয়ার্ড রিড করা
             const inputId = document.getElementById('studentId').value.trim();
             const inputPass = document.getElementById('password').value.trim();
             const errorMsg = document.getElementById('errorMsg');
             
-            // আইডি ও পাসওয়ার্ড সঠিক হলে ড্যাশবোর্ড স্ক্রিন আনলক হবে
+            // ডাটাবেজের (অবজেক্টের) সাথে আইডি-পাসওয়ার্ড ম্যাচ করা হলো
             if (inputId === studentData.id && inputPass === studentData.password) {
+                // লগইন সফল হলে লগইন স্ক্রিন হাইড হয়ে মেইন ইন্টারফেস শো করবে
                 document.getElementById('loginPage').classList.add('hidden');
                 document.getElementById('portalInterface').classList.remove('hidden');
                 if (errorMsg) errorMsg.innerText = "";
                 
-                // প্রোফাইল ও টপ বারে আপনার সব ডাটা পুশ করার মেকানিজম চালু করা
+                // আপনার আগের HTML ফাইলের আইডিগুলো ধরে ডাটা লোড করার ফাংশন কল
                 loadStudentProfileData();
             } else {
                 if (errorMsg) errorMsg.innerText = "Invalid Student ID or Password!";
@@ -43,30 +44,33 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// SS ১ এর খালি জায়গাগুলোতে ডাইনামিকালি সব ডাটা পুশ করার ফাংশন
+// আপনার আগের HTML ফাইলের আইডিগুলোর (`pId`, `pDept`, `pFather` ইত্যাদি) ভেতর ডাটা পুশ করার মেকানিজম
 function loadStudentProfileData() {
-    // হেডার রাইট প্যানেল ডাটা
-    document.getElementById("headerName").innerText = studentData.name;
-    document.getElementById("headerId").innerText = studentData.id;
+    // টপ হেডার প্যানেলের নাম ও আইডি আপডেট
+    if(document.getElementById("headerName")) {
+        document.getElementById("headerName").innerText = studentData.name;
+    }
     
-    // প্রোফাইল প্যানেল বেসিক কার্ড ডাটা
-    document.getElementById("pName").innerText = studentData.name;
-    document.getElementById("pId").innerText = studentData.id;
-    document.getElementById("pDept").innerText = studentData.dept;
-    document.getElementById("pProgram").innerText = studentData.program;
-    document.getElementById("pBatch").innerText = studentData.batch;
+    // প্রোফাইল কার্ডের বেসিক তথ্য ফিল্ড (যেখানে ড্যাশ '-' আসছিল)
+    if(document.getElementById("pName")) document.getElementById("pName").innerText = studentData.name;
+    if(document.getElementById("pId")) document.getElementById("pId").innerText = studentData.id;
+    if(document.getElementById("pDept")) document.getElementById("pDept").innerText = studentData.dept;
+    if(document.getElementById("pProgram")) document.getElementById("pProgram").innerText = studentData.program;
+    if(document.getElementById("pBatch")) document.getElementById("pBatch").innerText = studentData.batch;
     
-    // পার্সোনাল ও কন্টাক্ট ইনফো বক্স ডাটা
-    document.getElementById("pFather").innerText = studentData.father;
-    document.getElementById("pMother").innerText = studentData.mother;
-    document.getElementById("pBlood").innerText = studentData.blood;
-    document.getElementById("pGender").innerText = studentData.gender;
-    document.getElementById("pEmail").innerText = studentData.email;
-    document.getElementById("pPhone").innerText = studentData.phone;
-    document.getElementById("pAddress").innerText = studentData.address;
+    // পার্সোনাল ইনফরমেশন বক্সের ভেতর ডাটা পুশ
+    if(document.getElementById("pFather")) document.getElementById("pFather").innerText = studentData.father;
+    if(document.getElementById("pMother")) document.getElementById("pMother").innerText = studentData.mother;
+    if(document.getElementById("pBlood")) document.getElementById("pBlood").innerText = studentData.blood;
+    if(document.getElementById("pGender")) document.getElementById("pGender").innerText = studentData.gender;
+    
+    // কন্টাক্ট ইনফরমেশন বক্সের ভেতর ডাটা পুশ
+    if(document.getElementById("pEmail")) document.getElementById("pEmail").innerText = studentData.email;
+    if(document.getElementById("pPhone")) document.getElementById("pPhone").innerText = studentData.phone;
+    if(document.getElementById("pAddress")) document.getElementById("pAddress").innerText = studentData.address;
 }
 
-// সাইডবার ট্যাব পরিবর্তন করার জন্য কন্ট্রোলার লজিক
+// সাইডবারের মেনু বা ট্যাব পরিবর্তন করার অরিজিনাল ফাংশন
 function switchTab(tabName) {
     const tabs = document.querySelectorAll('.tab-content');
     tabs.forEach(tab => tab.classList.add('hidden'));
@@ -78,20 +82,21 @@ function switchTab(tabName) {
     document.getElementById(`menu-${tabName}`).classList.add('active');
 }
 
-// ল্যাপটপ স্টোরেজ থেকে ফটো আপলোড করে সেট করার ফাংশন
+// ল্যাপটপ থেকে ছবি আপলোড করে প্রোফাইলে সেট করার ফাংশন
 function previewImage(event) {
     const reader = new FileReader();
     reader.onload = function() {
-        document.getElementById('profilePic').src = reader.result;
+        const output = document.getElementById('profilePic');
+        if(output) output.src = reader.result;
     };
     if(event.target.files[0]) {
         reader.readAsDataURL(event.target.files[0]);
     }
 }
 
-// লগআউট সেশন ডেস্ট্রাকশন কন্ট্রোলার
+// লগআউট সেশন কন্ট্রোলার ফাংশন
 function logout() {
     document.getElementById('portalInterface').classList.add('hidden');
     document.getElementById('loginPage').classList.remove('hidden');
-    document.getElementById('password').value = ""; // ক্লিয়ার ইনপুট
+    document.getElementById('password').value = ""; // পাসওয়ার্ড বক্স ক্লিয়ার
 }
