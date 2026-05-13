@@ -1,16 +1,16 @@
 const studentData = {
-    id: "221-15-1234",
+    id: "242-35-744",
     password: "1234",
     name: "Md. Emtiaz Hossain Sami",
     dept: "Software Engineering (SWE)",
     program: "B.Sc. in SWE",
-    batch: "42nd",
-    father: "Mr. XXX",
-    mother: "Mrs. XXX",
+    batch: "43rd",
+    father: "Md. Emarat Hossian Mollah",
+    mother: "Sabrina Sultana,
     blood: "B+",
     gender: "Male",
-    email: "sami@diu.edu.bd",
-    phone: "017XXXXXXXX",
+    email: "sami242-35-744@diu.edu.bd",
+    phone: "01998453990",
     address: "Dhaka, Bangladesh"
 };
 
