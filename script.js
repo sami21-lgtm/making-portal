@@ -1,4 +1,4 @@
-// আপনার সব ডাটা অবজেক্ট
+// ডাটা সোর্স অবজেক্ট
 const studentData = {
     id: "242-35-744",
     password: "1234",
@@ -15,24 +15,24 @@ const studentData = {
     address: "Dhaka, Bangladesh"
 };
 
-// DOM Content Loaded এর মাধ্যমে নিশ্চিত করা যে পেজ রেডি হওয়ার পরই স্ক্রিপ্ট কাজ করবে
+// DOM Content পুরোপুরি রেডি হলে ইভেন্ট লিসেনার চালু হবে
 document.addEventListener("DOMContentLoaded", function() {
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // ফর্মের রিফ্রেশ করা ব্লক করার শেষ ডিফেন্স
+            e.preventDefault(); // ফর্ম সাবমিট হয়ে পেজ রিফ্রেশ হওয়া লক করা হলো
             
             const inputId = document.getElementById('studentId').value.trim();
             const inputPass = document.getElementById('password').value.trim();
             const errorMsg = document.getElementById('errorMsg');
             
             if (inputId === studentData.id && inputPass === studentData.password) {
-                // সফল লগইন ট্রানজিশন
+                // সফলভাবে লগইন হলে পোর্টাল ভিউ আনলক হবে
                 document.getElementById('loginPage').classList.add('hidden');
                 document.getElementById('portalInterface').classList.remove('hidden');
                 if (errorMsg) errorMsg.innerText = "";
                 
-                // সব খালি জায়গায় ডাটা লোড করা
+                // ইন্টারফেসে প্রোফাইল ডাটা সেট করার ফাংশন কল
                 loadStudentProfileData();
             } else {
                 if (errorMsg) errorMsg.innerText = "Invalid Student ID or Password!";
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// প্রোফাইল পেজে ডাটা সেট করার কোর মেকানিজম
+// HTML এর খালি ফিল্ডগুলোতে ডাটা ডিস্ট্রিবিউট করার ফাংশন
 function loadStudentProfileData() {
     document.getElementById("headerName").innerText = studentData.name;
     document.getElementById("headerId").innerText = studentData.id;
@@ -59,7 +59,7 @@ function loadStudentProfileData() {
     document.getElementById("pAddress").innerText = studentData.address;
 }
 
-// Dynamic Sidebar Navigation Tab Switcher
+// Side Menu Tab Switcher Mechanism
 function switchTab(tabName) {
     const tabs = document.querySelectorAll('.tab-content');
     tabs.forEach(tab => tab.classList.add('hidden'));
@@ -82,7 +82,7 @@ function previewImage(event) {
     }
 }
 
-// Session Destruction System
+// Session Log Out Frame Controller
 function logout() {
     document.getElementById('portalInterface').classList.add('hidden');
     document.getElementById('loginPage').classList.remove('hidden');
