@@ -1,4 +1,4 @@
-/* ================= GLOBAL RESET ================= */
+/* ================= GLOBAL STYLES ================= */
 * {
     margin: 0;
     padding: 0;
@@ -15,8 +15,9 @@ body {
     display: none !important; 
 }
 
-/* ================= LOGIN UI ================= */
+/* ================= LOGIN SCREEN ================= */
 .login-body {
+    /* ব্যাকগ্রাউন্ডে আবছা লোগো ওয়াটারমার্ক */
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.95)), 
                 url('diu_logo.png') no-repeat center;
     background-size: 380px;
@@ -106,7 +107,7 @@ body {
     background-color: #003366;
 }
 
-/* ================= SYSTEM INTERFACE ================= */
+/* ================= PORTAL INTERFACE ================= */
 .portal-container { 
     display: flex; 
     flex-direction: column; 
@@ -114,7 +115,7 @@ body {
     background-color: #f1f5f9; 
 }
 
-/* Top Navigation Bar */
+/* Header Bar */
 .header {
     background-color: #004b87; 
     color: white; 
@@ -157,13 +158,13 @@ body {
     background-color: #b91c1c;
 }
 
-/* Main Content Structure Layout */
+/* Layout Wrapper */
 .main-wrapper { 
     display: flex; 
     flex: 1; 
 }
 
-/* Sidebar Styling Options */
+/* Sidebar Options */
 .sidebar { 
     width: 240px; 
     background-color: #001f3f; 
@@ -189,10 +190,11 @@ body {
     border-left: 4px solid #38bdf8;
 }
 
-/* Workspace Core Screen */
+/* Main Content Field */
 .content { 
     flex: 1; 
     padding: 25px; 
+    /* কন্টেন্ট এরিয়ার ব্যাকগ্রাউন্ড ওয়াটারমার্ক */
     background: linear-gradient(rgba(241, 245, 249, 0.94), rgba(241, 245, 249, 0.94)), 
                 url('diu_logo.png') no-repeat center fixed;
     background-size: 320px;
@@ -216,7 +218,7 @@ body {
     margin-bottom: 20px; 
 }
 
-/* ================= DASHBOARD SYSTEM CARDS ================= */
+/* ================= DASHBOARD STAT CARDS ================= */
 .dashboard-cards { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
@@ -251,7 +253,7 @@ body {
     font-weight: bold; 
 }
 
-/* ================= STUDENT PROFILE CARD LAYER ================= */
+/* ================= PROFILE STYLES ================= */
 .profile-card { 
     background: white; 
     padding: 25px; 
@@ -333,7 +335,7 @@ body {
     font-weight: 600;
 }
 
-/* ================= SECTOR BAR PERFORMANCE CHART ================= */
+/* ================= CGPA GRAPH CHART ================= */
 .chart-container { 
     display: flex; 
     justify-content: space-around; 
@@ -377,7 +379,7 @@ body {
     font-weight: 500;
 }
 
-/* ================= CLASS ROUTINE GRID DATA ================= */
+/* ================= CLASS ROUTINE TABLE ================= */
 .routine-table { 
     width: 100%; 
     border-collapse: collapse; 
@@ -396,7 +398,7 @@ body {
     color: #334155;
 }
 
-/* ================= OVERALL SYSTEM FOOTER ================= */
+/* ================= SYSTEM FOOTER ================= */
 .footer { 
     background-color: #1e293b; 
     color: #94a3b8; 
@@ -405,7 +407,7 @@ body {
     font-size: 11px; 
 }
 
-/* ================= SCREEN SIZE MEDIA QUERIES (MOBILE) ================= */
+/* ================= MOBILE RESPONSIVE LAYOUT ================= */
 @media (max-width: 768px) {
     .main-wrapper { 
         flex-direction: column; 
