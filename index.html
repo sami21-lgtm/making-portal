@@ -11,10 +11,10 @@
     <div id="loginPage" class="login-body">
         <div class="login-box">
             <div class="login-header">
-                <img src="https://blog.daffodilvarsity.edu.bd/images/logo.png" alt="DIU Logo" class="login-logo">
+                <img src="https://daffodilvarsity.edu.bd/template/custom/images/logo.png" alt="DIU Logo" class="login-logo" onerror="this.src='https://blog.daffodilvarsity.edu.bd/images/logo.png'">
                 <h2>Welcome to Student Portal</h2>
             </div>
-            <form id="loginForm">
+            <form id="loginForm" onsubmit="event.preventDefault();">
                 <div class="input-group">
                     <label>Student ID or Registration ID</label>
                     <input type="text" id="studentId" value="242-35-744" required>
@@ -87,7 +87,7 @@
                     <div class="page-title">Student Profile</div>
                     <div class="profile-card">
                         <div class="image-container">
-                            <img id="profilePic" src="Md.Emtiaz Hoosain Sami.jpg" class="profile-pic" alt="Profile View">
+                            <img id="profilePic" src="https://via.placeholder.com/150x180?text=Upload+Photo" class="profile-pic" alt="Profile View">
                             <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="previewImage(event)">
                             <button class="upload-btn" onclick="document.getElementById('imageUpload').click()">Choose Photo</button>
                         </div>
