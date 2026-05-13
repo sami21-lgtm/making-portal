@@ -1,4 +1,4 @@
-// ডাটা সোর্স অবজেক্ট
+// আপনার রিয়েল সব ইনফরমেশন অবজেক্ট ডাটা
 const studentData = {
     id: "242-35-744",
     password: "1234",
@@ -15,24 +15,26 @@ const studentData = {
     address: "Dhaka, Bangladesh"
 };
 
-// DOM Content পুরোপুরি রেডি হলে ইভেন্ট লিসেনার চালু হবে
+// SS ৩ এর ডাটা ধরে ফর্ম সাবমিট ইভেন্ট হ্যান্ডলার রেন্ডারিং
 document.addEventListener("DOMContentLoaded", function() {
     const loginForm = document.getElementById('loginForm');
+    
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // ফর্ম সাবমিট হয়ে পেজ রিফ্রেশ হওয়া লক করা হলো
+            e.preventDefault(); // ব্রাউজার স্ক্রিন রিফ্রেশ লক
             
+            // HTML থেকে আইডি ও পাসওয়ার্ড ইনপুট রিড করা
             const inputId = document.getElementById('studentId').value.trim();
             const inputPass = document.getElementById('password').value.trim();
             const errorMsg = document.getElementById('errorMsg');
             
+            // আইডি ও পাসওয়ার্ড সঠিক হলে ড্যাশবোর্ড স্ক্রিন আনলক হবে
             if (inputId === studentData.id && inputPass === studentData.password) {
-                // সফলভাবে লগইন হলে পোর্টাল ভিউ আনলক হবে
                 document.getElementById('loginPage').classList.add('hidden');
                 document.getElementById('portalInterface').classList.remove('hidden');
                 if (errorMsg) errorMsg.innerText = "";
                 
-                // ইন্টারফেসে প্রোফাইল ডাটা সেট করার ফাংশন কল
+                // প্রোফাইল ও টপ বারে আপনার সব ডাটা পুশ করার মেকানিজম চালু করা
                 loadStudentProfileData();
             } else {
                 if (errorMsg) errorMsg.innerText = "Invalid Student ID or Password!";
@@ -41,15 +43,20 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// HTML এর খালি ফিল্ডগুলোতে ডাটা ডিস্ট্রিবিউট করার ফাংশন
+// SS ১ এর খালি জায়গাগুলোতে ডাইনামিকালি সব ডাটা পুশ করার ফাংশন
 function loadStudentProfileData() {
+    // হেডার রাইট প্যানেল ডাটা
     document.getElementById("headerName").innerText = studentData.name;
     document.getElementById("headerId").innerText = studentData.id;
+    
+    // প্রোফাইল প্যানেল বেসিক কার্ড ডাটা
     document.getElementById("pName").innerText = studentData.name;
     document.getElementById("pId").innerText = studentData.id;
     document.getElementById("pDept").innerText = studentData.dept;
     document.getElementById("pProgram").innerText = studentData.program;
     document.getElementById("pBatch").innerText = studentData.batch;
+    
+    // পার্সোনাল ও কন্টাক্ট ইনফো বক্স ডাটা
     document.getElementById("pFather").innerText = studentData.father;
     document.getElementById("pMother").innerText = studentData.mother;
     document.getElementById("pBlood").innerText = studentData.blood;
@@ -59,7 +66,7 @@ function loadStudentProfileData() {
     document.getElementById("pAddress").innerText = studentData.address;
 }
 
-// Side Menu Tab Switcher Mechanism
+// সাইডবার ট্যাব পরিবর্তন করার জন্য কন্ট্রোলার লজিক
 function switchTab(tabName) {
     const tabs = document.querySelectorAll('.tab-content');
     tabs.forEach(tab => tab.classList.add('hidden'));
@@ -71,7 +78,7 @@ function switchTab(tabName) {
     document.getElementById(`menu-${tabName}`).classList.add('active');
 }
 
-// Image Loader Setup for PC Upload
+// ল্যাপটপ স্টোরেজ থেকে ফটো আপলোড করে সেট করার ফাংশন
 function previewImage(event) {
     const reader = new FileReader();
     reader.onload = function() {
@@ -82,9 +89,9 @@ function previewImage(event) {
     }
 }
 
-// Session Log Out Frame Controller
+// লগআউট সেশন ডেস্ট্রাকশন কন্ট্রোলার
 function logout() {
     document.getElementById('portalInterface').classList.add('hidden');
     document.getElementById('loginPage').classList.remove('hidden');
-    document.getElementById('password').value = "";
+    document.getElementById('password').value = ""; // ক্লিয়ার ইনপুট
 }
