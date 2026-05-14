@@ -1,489 +1,61 @@
-/* ================= GLOBAL STYLES ================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: #f4f6f9; color: #333; overflow-x: hidden; }
 
-body {
-    background-color: #f4f6f9;
-    color: #333;
-    height: 100vh;
-    overflow: hidden; /* পেজ স্ক্রোলিং বন্ধ করে শুধু কন্টেন্ট স্ক্রোল করার জন্য */
-}
+.hidden { display: none !important; }
 
-.hidden { 
-    display: none !important; 
-}
-
-/* ================= LOGIN SCREEN ================= */
+/* Login */
 .login-body {
-    /* ব্যাকগ্রাউন্ডে আবছা লোগো ওয়াটারমার্ক */
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.95)), 
-                url('https://blog.daffodilvarsity.edu.bd/images/logo.png') no-repeat center;
-    background-size: 380px;
-    background-blend-mode: overlay;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.95)), url('diu_logo.png') no-repeat center;
+    background-size: 350px; background-blend-mode: overlay; height: 100vh; display: flex; align-items: center; justify-content: center;
 }
+.login-box { background: white; padding: 35px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); width: 100%; max-width: 400px; text-align: center; }
+.login-logo { height: 50px; margin-bottom: 15px; }
+.input-group { text-align: left; margin-bottom: 15px; }
+.input-group label { display: block; font-size: 13px; margin-bottom: 5px; color: #555; }
+.input-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; }
+.login-btn { width: 100%; padding: 12px; background: #004b87; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+.error-msg { color: red; font-size: 12px; margin-bottom: 10px; }
 
-.login-box {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    width: 100%;
-    max-width: 420px;
-    text-align: center;
-}
+/* Portal Layout */
+.portal-container { display: flex; flex-direction: column; min-height: 100vh; }
+.header { background: #004b87; color: white; padding: 12px 25px; display: flex; justify-content: space-between; align-items: center; }
+.logout-btn { padding: 4px 12px; background: #dc2626; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11px; }
+.main-wrapper { display: flex; flex: 1; }
+.sidebar { width: 240px; background: #001f3f; color: #cbd5e1; }
+.sidebar-menu li { padding: 15px 20px; cursor: pointer; border-bottom: 1px solid #002d5a; font-size: 14px; }
+.sidebar-menu li.active { background: #003366; color: white; border-left: 4px solid #38bdf8; }
+.content { flex: 1; padding: 25px; overflow-y: auto; }
+.page-title { font-size: 18px; font-weight: bold; color: #004b87; border-bottom: 2px solid #004b87; padding-bottom: 5px; margin-bottom: 20px; }
 
-.login-logo {
-    height: 55px;
-    margin-bottom: 15px;
-    object-fit: contain;
-}
+/* Cards & Profile */
+.dashboard-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px; }
+.d-card { padding: 20px; border-radius: 8px; text-align: center; color: white; }
+.text-payable { background: #3b82f6; } .text-paid { background: #10b981; } .text-due { background: #ef4444; } .text-other { background: #64748b; }
+.d-card-value { font-size: 22px; font-weight: bold; margin-top: 5px; }
 
-.login-header h2 {
-    font-size: 20px;
-    color: #004b87;
-    margin-bottom: 25px;
-    font-weight: 600;
-}
+.profile-card { background: white; padding: 20px; border-radius: 8px; display: flex; gap: 25px; margin-bottom: 20px; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.profile-pic { width: 120px; height: 150px; border: 2px solid #004b87; object-fit: cover; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.info-box { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.info-box h4 { background: #004b87; color: white; padding: 8px; margin: -15px -15px 15px -15px; font-size: 13px; }
+.info-row { display: flex; font-size: 13px; margin-bottom: 6px; }
+.info-label { width: 120px; font-weight: bold; color: #666; }
 
-.input-group {
-    text-align: left;
-    margin-bottom: 20px;
-}
+/* Chart */
+.chart-container { display: flex; justify-content: space-around; align-items: flex-end; height: 180px; border-bottom: 2px solid #ddd; padding-bottom: 5px; }
+.bar-wrapper { display: flex; flex-direction: column; align-items: center; width: 15%; }
+.bar { width: 100%; border-radius: 4px 4px 0 0; color: white; font-size: 10px; text-align: center; padding-top: 5px; }
+.bar-1 { background: #22c55e; } .bar-2 { background: #a855f7; } .bar-3 { background: #eab308; } .bar-4 { background: #06b6d4; } .bar-5 { background: #6366f1; }
+.bar-label { font-size: 10px; margin-top: 5px; }
 
-.input-group label {
-    display: block;
-    font-size: 13px;
-    margin-bottom: 6px;
-    color: #475569;
-    font-weight: 500;
-}
+.footer { background: #1e293b; color: #94a3b8; text-align: center; padding: 10px; font-size: 10px; }
 
-.input-group input {
-    width: 100%;
-    padding: 11px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    font-size: 14px;
-    background-color: #f8fafc;
-    transition: 0.2s;
-}
-
-.input-group input:focus {
-    outline: none;
-    border-color: #004b87;
-    background-color: #fff;
-    box-shadow: 0 0 0 3px rgba(0, 75, 135, 0.1);
-}
-
-.error-msg { 
-    color: #ef4444; 
-    font-size: 13px; 
-    margin-bottom: 15px; 
-    text-align: left;
-    font-weight: 500;
-}
-
-.login-btn {
-    width: 100%; 
-    padding: 12px; 
-    background-color: #004b87; 
-    color: white;
-    border: none; 
-    border-radius: 6px; 
-    font-size: 15px; 
-    font-weight: 500;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.login-btn:hover {
-    background-color: #003366;
-}
-
-/* ================= PORTAL INTERFACE ================= */
-.portal-container { 
-    display: flex; 
-    flex-direction: column; 
-    min-height: 100vh; 
-    background-color: #f1f5f9; 
-}
-
-/* Header Bar */
-.header {
-    background-color: #004b87; 
-    color: white; 
-    padding: 12px 25px;
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    border-bottom: 3px solid #003366;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.header-logo h2 { 
-    font-size: 18px; 
-    font-weight: 600;
-}
-
-.header-logo span { 
-    font-size: 11px; 
-    opacity: 0.8; 
-}
-
-.header-user {
-    text-align: right;
-}
-
-.logout-btn {
-    margin-top: 4px; 
-    padding: 4px 14px; 
-    background-color: #dc2626;
-    color: white; 
-    border: none; 
-    border-radius: 4px; 
-    cursor: pointer; 
-    font-size: 11px;
-    font-weight: 500;
-    transition: 0.2s;
-}
-
-.logout-btn:hover {
-    background-color: #b91c1c;
-}
-
-/* Layout Wrapper */
-.main-wrapper { 
-    display: flex; 
-    flex: 1; 
-    overflow: hidden;
-}
-
-/* Sidebar Options */
-.sidebar { 
-    width: 240px; 
-    background-color: #001f3f; 
-    color: #cbd5e1; 
-    flex-shrink: 0;
-}
-
-.sidebar-menu {
-    list-style: none;
-}
-
-.sidebar-menu li {
-    padding: 15px 20px; 
-    font-size: 14px; 
-    cursor: pointer;
-    border-bottom: 1px solid #002d5a; 
-    transition: 0.2s;
-}
-
-.sidebar-menu li:hover, .sidebar-menu li.active {
-    background-color: #003366; 
-    color: white; 
-    font-weight: bold; 
-    border-left: 4px solid #38bdf8;
-}
-
-/* Main Content Field */
-.content { 
-    flex: 1; 
-    padding: 25px; 
-    /* কন্টেন্ট এরিয়ার ব্যাকগ্রাউন্ড ওয়াটারমার্ক */
-    background: linear-gradient(rgba(241, 245, 249, 0.94), rgba(241, 245, 249, 0.94)), 
-                url('https://blog.daffodilvarsity.edu.bd/images/logo.png') no-repeat center fixed;
-    background-size: 320px;
-    overflow-y: auto; /* শুধু এখানে স্ক্রোল হবে */
-}
-
-.page-title {
-    font-size: 18px; 
-    font-weight: bold; 
-    color: #004b87;
-    border-bottom: 2px solid #004b87; 
-    padding-bottom: 8px; 
-    margin-bottom: 20px;
-}
-
-.card-box { 
-    background: white; 
-    padding: 20px; 
-    border-radius: 6px; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
-    margin-bottom: 20px; 
-}
-
-/* ================= DASHBOARD STAT CARDS ================= */
-.dashboard-cards { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-    gap: 15px; 
-    margin-bottom: 25px; 
-}
-
-.d-card { 
-    background: white; 
-    padding: 22px 15px; 
-    border-radius: 6px; 
-    text-align: center; 
-    color: white; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.text-payable { background-color: #3b82f6; }
-.text-paid { background-color: #10b981; }
-.text-due { background-color: #ef4444; }
-.text-other { background-color: #64748b; }
-
-.d-card h3 { 
-    font-size: 12px; 
-    text-transform: uppercase; 
-    margin-bottom: 6px; 
-    letter-spacing: 0.5px;
-    opacity: 0.9;
-}
-
-.d-card-value { 
-    font-size: 24px; 
-    font-weight: bold; 
-}
-
-/* ================= PROFILE STYLES ================= */
-.profile-card { 
-    background: white; 
-    padding: 25px; 
-    border-radius: 6px; 
-    display: flex; 
-    gap: 30px; 
-    margin-bottom: 20px; 
-    align-items: center; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.image-container { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    gap: 8px; 
-}
-
-.profile-pic { 
-    width: 130px; 
-    height: 160px; 
-    border: 2px solid #004b87; 
-    object-fit: cover; 
-    border-radius: 4px; 
-}
-
-.upload-btn { 
-    padding: 5px 12px; 
-    font-size: 11px; 
-    background: #004b87; 
-    color: white; 
-    border: none; 
-    border-radius: 3px; 
-    cursor: pointer; 
-    font-weight: 500;
-}
-
-.profile-basic-info h3 { 
-    font-size: 20px; 
-    margin-bottom: 15px; 
-    color: #1e293b;
-}
-
-.info-row { 
-    display: flex; 
-    font-size: 13px; 
-    margin-bottom: 8px; 
-}
-
-.info-label { 
-    width: 130px; 
-    font-weight: bold; 
-    color: #475569; 
-}
-
-.info-value {
-    color: #0f172a;
-}
-
-.info-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 20px; 
-}
-
-.info-box { 
-    background: white; 
-    border-radius: 6px; 
-    padding: 20px; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.info-box h4 { 
-    background: #004b87; 
-    color: white; 
-    padding: 10px 15px; 
-    font-size: 13px; 
-    margin: -20px -20px 20px -20px; 
-    font-weight: 600;
-}
-
-/* ================= CGPA GRAPH CHART ================= */
-.chart-container { 
-    display: flex; 
-    justify-content: space-around; 
-    align-items: flex-end; 
-    height: 220px; 
-    border-bottom: 2px solid #cbd5e1; 
-    padding-bottom: 5px;
-}
-
-.bar-wrapper { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    width: 14%; 
-    justify-content: flex-end; 
-    height: 100%; 
-}
-
-.bar { 
-    width: 100%; 
-    border-radius: 5px 5px 0 0; 
-    display: flex; 
-    align-items: flex-start; 
-    justify-content: center; 
-    padding-top: 6px; 
-    color: white; 
-    font-size: 11px; 
-    font-weight: bold; 
-}
-
-.bar-1 { background-color: #22c55e; } 
-.bar-2 { background-color: #a855f7; } 
-.bar-3 { background-color: #eab308; } 
-.bar-4 { background-color: #06b6d4; } 
-.bar-5 { background-color: #6366f1; }
-
-.bar-label { 
-    font-size: 11px; 
-    color: #475569; 
-    margin-top: 8px; 
-    font-weight: 500;
-}
-
-/* ================= CLASS ROUTINE TABLE ================= */
-.routine-table { 
-    width: 100%; 
-    border-collapse: collapse; 
-}
-
-.routine-table th, .routine-table td { 
-    border: 1px solid #e2e8f0; 
-    padding: 12px; 
-    font-size: 13px; 
-}
-
-.routine-table th { 
-    background-color: #f8fafc; 
-    width: 25%; 
-    text-align: left; 
-    color: #334155;
-}
-
-/* ================= SYSTEM FOOTER ================= */
-.footer { 
-    background-color: #1e293b; 
-    color: #94a3b8; 
-    text-align: center; 
-    padding: 14px; 
-    font-size: 11px; 
-    flex-shrink: 0;
-}
-
-/* ================= MOBILE RESPONSIVE LAYOUT ================= */
+/* Mobile */
 @media (max-width: 768px) {
-    body {
-        overflow: auto; /* মোবাইলে মেইন স্ক্রোল এলাউ করা হলো */
-    }
-
-    .main-wrapper { 
-        flex-direction: column; 
-        overflow: visible;
-    }
-
-    .sidebar { 
-        width: 100%; 
-    }
-
-    .sidebar-menu { 
-        display: flex; 
-        overflow-x: auto; 
-    }
-
-    .sidebar-menu li { 
-        padding: 12px 18px; 
-        white-space: nowrap; 
-        border-bottom: none; 
-        border-right: 1px solid #002d5a; 
-        font-size: 13px;
-    }
-
-    .sidebar-menu li:hover, .sidebar-menu li.active {
-        border-left: none;
-        border-bottom: 3px solid #38bdf8;
-    }
-
-    .content {
-        padding: 15px;
-        background-size: 220px;
-        overflow: visible;
-    }
-
-    .profile-card { 
-        flex-direction: column; 
-        text-align: center; 
-        gap: 20px;
-        padding: 20px 10px;
-    }
-
-    .info-row { 
-        flex-direction: column; 
-        gap: 2px;
-    }
-
-    .info-label {
-        width: 100%;
-    }
-
-    .info-grid { 
-        grid-template-columns: 1fr; 
-    }
-
-    .chart-container {
-        height: 160px;
-    }
-
-    .bar-wrapper {
-        width: 18%;
-    }
-
-    .bar span {
-        font-size: 9px;
-    }
-
-    .bar-label {
-        font-size: 10px;
-    }
+    .main-wrapper { flex-direction: column; }
+    .sidebar { width: 100%; }
+    .sidebar-menu { display: flex; overflow-x: auto; }
+    .sidebar-menu li { white-space: nowrap; border-bottom: none; border-right: 1px solid #002d5a; }
+    .info-grid { grid-template-columns: 1fr; }
+    .profile-card { flex-direction: column; text-align: center; }
 }
