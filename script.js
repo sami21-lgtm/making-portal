@@ -22,32 +22,44 @@ function handleLogin(event) {
     if (studentId === studentData.id && password === studentData.password) {
         document.getElementById('loginPage').classList.remove('active');
         document.getElementById('portalPage').classList.add('active');
-        updateUserDisplay();
+        updateProfileUI();
     } else {
-        alert('ভুল আইডি বা পাসওয়ার্ড! আবার চেষ্টা করুন।');
+        alert('Invalid ID or Password!');
     }
 }
 
-function updateUserDisplay() {
+function updateProfileUI() {
+    // হেডার ও প্রোফাইল নাম
     document.getElementById('userName').textContent = studentData.name;
+    
+    // প্রোফাইল সেকশনের তথ্য (যদি HTML-এ এই আইডিগুলো থাকে)
+    const fields = {
+        'pName': studentData.name,
+        'pId': studentData.id,
+        'pDept': studentData.dept,
+        'pFather': studentData.father,
+        'pMother': studentData.mother,
+        'pEmail': studentData.email,
+        'pPhone': studentData.phone
+    };
+
+    for (let id in fields) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = fields[id];
+    }
 }
 
 function showSection(sectionId) {
-    document.querySelectorAll('.page-section').forEach(section => {
-        section.classList.remove('active');
-    });
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-    });
-
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        targetSection.classList.add('active');
-    }
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    
+    document.getElementById(sectionId).classList.add('active');
+    if (event) event.currentTarget.classList.add('active');
+    
+    const titles = { 'dashboard': 'Dashboard', 'profile': 'Student Profile', 'results': 'Academic Results' };
+    document.getElementById('pageTitle').textContent = titles[sectionId] || 'Portal';
 }
 
 function logout() {
-    if (confirm('আপনি কি লগআউট করতে চান?')) {
-        location.reload(); 
-    }
+    location.reload();
 }
