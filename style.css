@@ -9,6 +9,8 @@
 body {
     background-color: #f4f6f9;
     color: #333;
+    height: 100vh;
+    overflow: hidden; /* পেজ স্ক্রোলিং বন্ধ করে শুধু কন্টেন্ট স্ক্রোল করার জন্য */
 }
 
 .hidden { 
@@ -17,9 +19,9 @@ body {
 
 /* ================= LOGIN SCREEN ================= */
 .login-body {
-    /* ব্যাকগ্রাউন্ডে আবছা লোগো ওয়াটারমার্ক */
+    /* ব্যাকগ্রাউন্ডে আবছা লোগো ওয়াটারমার্ক */
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.95)), 
-                url('diu_logo.png') no-repeat center;
+                url('https://blog.daffodilvarsity.edu.bd/images/logo.png') no-repeat center;
     background-size: 380px;
     background-blend-mode: overlay;
     height: 100vh;
@@ -162,6 +164,7 @@ body {
 .main-wrapper { 
     display: flex; 
     flex: 1; 
+    overflow: hidden;
 }
 
 /* Sidebar Options */
@@ -169,6 +172,7 @@ body {
     width: 240px; 
     background-color: #001f3f; 
     color: #cbd5e1; 
+    flex-shrink: 0;
 }
 
 .sidebar-menu {
@@ -194,11 +198,11 @@ body {
 .content { 
     flex: 1; 
     padding: 25px; 
-    /* কন্টেন্ট এরিয়ার ব্যাকগ্রাউন্ড ওয়াটারমার্ক */
+    /* কন্টেন্ট এরিয়ার ব্যাকগ্রাউন্ড ওয়াটারমার্ক */
     background: linear-gradient(rgba(241, 245, 249, 0.94), rgba(241, 245, 249, 0.94)), 
-                url('diu_logo.png') no-repeat center fixed;
+                url('https://blog.daffodilvarsity.edu.bd/images/logo.png') no-repeat center fixed;
     background-size: 320px;
-    overflow-y: auto;
+    overflow-y: auto; /* শুধু এখানে স্ক্রোল হবে */
 }
 
 .page-title {
@@ -405,55 +409,80 @@ body {
     text-align: center; 
     padding: 14px; 
     font-size: 11px; 
+    flex-shrink: 0;
 }
 
 /* ================= MOBILE RESPONSIVE LAYOUT ================= */
 @media (max-width: 768px) {
+    body {
+        overflow: auto; /* মোবাইলে মেইন স্ক্রোল এলাউ করা হলো */
+    }
+
     .main-wrapper { 
         flex-direction: column; 
+        overflow: visible;
     }
+
     .sidebar { 
         width: 100%; 
     }
+
     .sidebar-menu { 
         display: flex; 
         overflow-x: auto; 
     }
+
     .sidebar-menu li { 
         padding: 12px 18px; 
         white-space: nowrap; 
         border-bottom: none; 
         border-right: 1px solid #002d5a; 
+        font-size: 13px;
     }
+
     .sidebar-menu li:hover, .sidebar-menu li.active {
         border-left: none;
         border-bottom: 3px solid #38bdf8;
     }
+
     .content {
         padding: 15px;
         background-size: 220px;
+        overflow: visible;
     }
+
     .profile-card { 
         flex-direction: column; 
         text-align: center; 
-        gap: 15px;
+        gap: 20px;
+        padding: 20px 10px;
     }
+
     .info-row { 
         flex-direction: column; 
         gap: 2px;
     }
+
     .info-label {
         width: 100%;
     }
+
     .info-grid { 
         grid-template-columns: 1fr; 
     }
+
     .chart-container {
         height: 160px;
     }
-    .bar span {
-        font-size: 10px;
+
+    .bar-wrapper {
+        width: 18%;
     }
+
+    .bar span {
+        font-size: 9px;
+    }
+
     .bar-label {
         font-size: 10px;
     }
