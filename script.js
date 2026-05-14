@@ -1,4 +1,4 @@
-// আপনার সঠিক ডাটাবেজ
+// আপনার সকল সঠিক তথ্য
 const studentData = {
     id: "242-35-744",
     password: "1234",
@@ -15,27 +15,30 @@ const studentData = {
     address: "Dhaka, Bangladesh"
 };
 
+// এই ফাংশনটি স্বয়ংক্রিয়ভাবে বাটনের সাথে কানেক্ট হবে
 document.addEventListener("DOMContentLoaded", function() {
-    // ১. লগইন বাটনটি খুঁজে বের করা (আপনার অরিজিনাল ক্লাস নাম অনুযায়ী)
-    const loginBtn = document.querySelector('.login-btn');
+    console.log("Portal Script Loaded!");
+
+    // ১. লগইন বাটন ও ফর্ম খুঁজে বের করা
     const loginForm = document.getElementById('loginForm');
+    const loginBtn = document.querySelector('.login-btn');
 
-    // ২. লগইন ফাংশন
+    // ২. লগইন করার মেইন ফাংশন
     function performLogin(e) {
-        if(e) e.preventDefault(); // পেজ রিফ্রেশ হওয়া বন্ধ করবে
-
+        if(e) e.preventDefault(); // পেজ রিফ্রেশ হওয়া আটকাবে
+        
         const idInput = document.getElementById('studentId');
         const passInput = document.getElementById('password');
         const errorMsg = document.getElementById('errorMsg');
 
+        // ভ্যালিডেশন চেক
         if (idInput.value.trim() === studentData.id && passInput.value.trim() === studentData.password) {
-            // সফল লগইন: লগইন পেজ লুকিয়ে মেইন ইন্টারফেস দেখাবে
-            document.getElementById('loginPage').classList.add('hidden');
+            // লগইন পেজ লুকিয়ে পোর্টাল দেখাবে
+            document.getElementById('loginPage').style.display = 'none';
             document.getElementById('portalInterface').classList.remove('hidden');
-            if (errorMsg) errorMsg.innerText = "";
+            document.getElementById('portalInterface').style.display = 'flex';
             
-            // ডাটা লোড করা
-            loadProfileData();
+            loadProfileData(); // তথ্য লোড করবে
         } else {
             if (errorMsg) {
                 errorMsg.innerText = "Invalid Student ID or Password!";
@@ -45,38 +48,39 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // ৩. বাটনে ক্লিক করলে বা এন্টার চাপলে লগইন ট্রিগার হবে
-    if (loginBtn) {
-        loginBtn.addEventListener('click', performLogin);
-    }
+    // ৩. বাটন এবং এন্টার কী-তে ইভেন্ট লিসেনার সেট করা
     if (loginForm) {
         loginForm.addEventListener('submit', performLogin);
+    } else if (loginBtn) {
+        loginBtn.addEventListener('click', performLogin);
     }
 
-    // ৪. আপনার ড্যাশ '-' ওয়ালা ফিল্ডগুলোতে ডাটা বসানোর ফাংশন
+    // ৪. তথ্যগুলো ড্যাশ '-' এর জায়গায় বসানো
     function loadProfileData() {
-        const setField = (id, value) => {
-            const el = document.getElementById(id);
-            if(el) el.innerText = value;
+        const fields = {
+            "headerName": studentData.name,
+            "headerId": studentData.id,
+            "pName": studentData.name,
+            "pId": studentData.id,
+            "pDept": studentData.dept,
+            "pProgram": studentData.program,
+            "pBatch": studentData.batch,
+            "pFather": studentData.father,
+            "pMother": studentData.mother,
+            "pBlood": studentData.blood,
+            "pGender": studentData.gender,
+            "pEmail": studentData.email,
+            "pPhone": studentData.phone,
+            "pAddress": studentData.address
         };
 
-        setField("headerName", studentData.name);
-        setField("headerId", studentData.id);
-        setField("pName", studentData.name);
-        setField("pId", studentData.id);
-        setField("pDept", studentData.dept);
-        setField("pProgram", studentData.program);
-        setField("pBatch", studentData.batch);
-        setField("pFather", studentData.father);
-        setField("pMother", studentData.mother);
-        setField("pBlood", studentData.blood);
-        setField("pGender", studentData.gender);
-        setField("pEmail", studentData.email);
-        setField("pPhone", studentData.phone);
-        setField("pAddress", studentData.address);
+        for (let id in fields) {
+            const element = document.getElementById(id);
+            if (element) element.innerText = fields[id];
+        }
     }
 
-    // ৫. ইমেজ প্রিভিউ ও ট্যাব সুইচিং (আগের মতো)
+    // ট্যাব পরিবর্তন ও ইমেজ প্রিভিউ ফাংশন (গ্লোবাল রাখা হয়েছে)
     window.switchTab = function(tabName) {
         document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
         document.querySelectorAll('.sidebar-menu li').forEach(l => l.classList.remove('active'));
@@ -91,8 +95,6 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     window.logout = function() {
-        document.getElementById('portalInterface').classList.add('hidden');
-        document.getElementById('loginPage').classList.remove('hidden');
-        document.getElementById('password').value = "";
+        location.reload(); // পেজ রিলোড করে আবার লগইন স্ক্রিনে আনবে
     };
 });
