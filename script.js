@@ -14,58 +14,62 @@ const studentData = {
     address: "Dhaka, Bangladesh"
 };
 
-// লগইন ফাংশন
-function checkLogin() {
-    const idInput = document.getElementById('studentId').value.trim();
-    const passInput = document.getElementById('password').value.trim();
-    const errorMsg = document.getElementById('errorMsg');
+let currentUser = null;
 
-    if (idInput === studentData.id && passInput === studentData.password) {
-        document.getElementById('loginPage').style.display = 'none';
-        const portal = document.getElementById('portalInterface');
-        portal.classList.remove('hidden');
-        portal.style.display = 'flex';
-        
-        loadProfileData(); // প্রোফাইল ডাটা লোড
+function handleLogin(event) {
+    event.preventDefault();
+    const studentId = document.getElementById('studentId').value;
+    const password = document.getElementById('password').value;
+
+    if (studentId === studentData.id && password === studentData.password) {
+        currentUser = studentData;
+        document.getElementById('loginPage').classList.remove('active');
+        document.getElementById('portalPage').classList.add('active');
+        updateUserDisplay();
     } else {
-        errorMsg.innerText = "Invalid ID or Password!";
+        alert('Invalid credentials. Try ID: 242-35-744, Password: 1234');
     }
 }
 
-// প্রোফাইলে ডাটা বসানো
-function loadProfileData() {
-    document.getElementById("headerName").innerText = studentData.name;
-    document.getElementById("headerId").innerText = studentData.id;
-    document.getElementById("pName").innerText = studentData.name;
-    document.getElementById("pId").innerText = studentData.id;
-    document.getElementById("pDept").innerText = studentData.dept;
-    document.getElementById("pProgram").innerText = studentData.program;
-    document.getElementById("pBatch").innerText = studentData.batch;
-    document.getElementById("pFather").innerText = studentData.father;
-    document.getElementById("pMother").innerText = studentData.mother;
-    document.getElementById("pBlood").innerText = studentData.blood;
-    document.getElementById("pGender").innerText = studentData.gender;
-    document.getElementById("pEmail").innerText = studentData.email;
-    document.getElementById("pPhone").innerText = studentData.phone;
-    document.getElementById("pAddress").innerText = studentData.address;
+function updateUserDisplay() {
+    document.getElementById('userName').textContent = currentUser.name;
 }
 
-// ট্যাব সুইচিং
-function switchTab(tabName) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
-    document.querySelectorAll('.sidebar-menu li').forEach(l => l.classList.remove('active'));
-    document.getElementById(`tab-${tabName}`).classList.remove('hidden');
-    document.getElementById(`menu-${tabName}`).classList.add('active');
+function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+    });
+
+    // Remove active class from all nav links
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+    });
+
+    // Show selected section
+    document.getElementById(sectionId).classList.add('active');
+
+    // Add active class to clicked nav link
+    event.target.closest('.nav-link').classList.add('active');
+
+    // Update page title
+    const titles = {
+        'dashboard': 'Dashboard',
+        'profile': 'Student Profile',
+        'schedule': 'Class Schedule',
+        'results': 'Academic Results',
+        'courses': 'Enrolled Courses',
+        'notices': 'Notices & Announcements'
+    };
+    document.getElementById('pageTitle').textContent = titles[sectionId] || 'Dashboard';
 }
 
-// ইমেজ আপলোড
-function previewImage(event) {
-    const reader = new FileReader();
-    reader.onload = () => document.getElementById('profilePic').src = reader.result;
-    if(event.target.files[0]) reader.readAsDataURL(event.target.files[0]);
-}
-
-// লগআউট
 function logout() {
-    location.reload(); 
+    if (confirm('Are you sure you want to logout?')) {
+        currentUser = null;
+        document.getElementById('loginPage').classList.add('active');
+        document.getElementById('portalPage').classList.remove('active');
+        document.getElementById('studentId').value = '';
+        document.getElementById('password').value = '';
+    }
 }
