@@ -12,11 +12,14 @@
         <div class="login-background"></div>
         <div class="login-box">
             <div class="login-header">
-                <div class="logo"> img src = " download (7).jpg</img></div>
+                <!-- আপনার লোগো এখানে সেট করা হয়েছে -->
+                <div class="logo-img-container">
+                    <img src="download (7).jpg" alt="DIU Logo" class="portal-logo" onerror="this.alt='📚';">
+                </div>
                 <h1>Daffodil University</h1>
                 <p>Student Portal Login</p>
             </div>
-            <form onsubmit="handleLogin(event)">
+            <form id="portalLoginForm">
                 <div class="form-group">
                     <label for="studentId">Student ID</label>
                     <input type="text" id="studentId" placeholder="Enter your ID" value="242-35-744" required>
@@ -53,7 +56,6 @@
 
         <!-- MAIN CONTENT -->
         <div class="main-content">
-            <!-- TOP BAR -->
             <div class="top-bar">
                 <h2 id="pageTitle">Dashboard</h2>
                 <div class="user-info">
@@ -65,7 +67,6 @@
                 </div>
             </div>
 
-            <!-- CONTENT AREA -->
             <div class="content-area">
                 <!-- DASHBOARD -->
                 <div class="page-section active" id="dashboard">
@@ -107,12 +108,21 @@
                     </div>
                 </div>
 
-                <!-- PROFILE (সেকশনটি আপনার আগের কোড অনুযায়ী ঠিক রাখা হয়েছে) -->
+                <!-- PROFILE -->
                 <div class="page-section" id="profile">
-                    <!-- প্রোফাইল কন্টেন্ট এখানে থাকবে -->
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">👨</div>
+                            <h2>Md. Emtiaz Hossain Sami</h2>
+                            <p>242-35-744 | Batch 43rd</p>
+                        </div>
+                        <div class="profile-content">
+                            <p style="text-align: center; color: var(--text-light);">Profile details loading...</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- RESULTS (গ্রেড আপডেট করা হয়েছে) -->
+                <!-- RESULTS -->
                 <div class="page-section" id="results">
                     <h3 style="margin-bottom: 20px; color: var(--primary);">Academic Results</h3>
                     <div class="results-table">
