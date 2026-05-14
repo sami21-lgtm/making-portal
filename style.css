@@ -1,50 +1,49 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-body { background: #f0f2f5; color: #333; overflow-x: hidden; }
+body { background: #f4f7f6; color: #333; }
 
 .portal-container { display: flex; min-height: 100vh; }
 .hidden { display: none !important; }
 
 /* Sidebar */
 .sidebar { width: 260px; background: #002147; color: white; position: fixed; height: 100vh; }
-.sidebar-header { padding: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-.sidebar-menu { list-style: none; padding-top: 10px; }
-.sidebar-menu li { padding: 15px 25px; cursor: pointer; transition: 0.3s; border-bottom: 1px solid rgba(255,255,255,0.05); }
-.sidebar-menu li:hover, .sidebar-menu li.active { background: #003366; border-left: 5px solid #00adef; }
+.sidebar-header { padding: 25px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.diu-logo-box img { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 10px; }
+.sidebar-menu { list-style: none; margin-top: 20px; }
+.sidebar-menu li { padding: 15px 25px; cursor: pointer; transition: 0.3s; border-left: 5px solid transparent; }
+.sidebar-menu li:hover, .sidebar-menu li.active { background: #003366; border-left-color: #00adef; color: white; }
 
 /* Main Content */
-.main-content { margin-left: 260px; flex: 1; display: flex; flex-direction: column; }
-.header-bar { background: #003366; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-.content-body { padding: 30px; flex: 1; }
-.section-header { font-size: 20px; font-weight: bold; color: #003366; border-bottom: 2px solid #003366; padding-bottom: 10px; margin-bottom: 25px; }
+.main-content { margin-left: 260px; flex: 1; }
+.header-bar { background: #003366; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #002147; }
+.content-area { padding: 30px; }
+.section-title { font-size: 20px; font-weight: bold; color: #003366; border-bottom: 2px solid #003366; padding-bottom: 8px; margin-bottom: 25px; }
 
 /* Dashboard Cards */
-.dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
-.stat-card { padding: 25px; border-radius: 8px; color: white; text-align: center; }
-.payable { background: #3949ab; } .paid { background: #2e7d32; } .due { background: #c62828; } .other { background: #546e7a; }
-.stat-card label { font-size: 13px; text-transform: uppercase; opacity: 0.9; }
-.stat-card .value { font-size: 24px; font-weight: bold; margin-top: 5px; }
+.dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
+.card { padding: 25px; border-radius: 8px; color: white; text-align: center; }
+.payable { background: #3949ab; } .paid { background: #2e7d32; } .due { background: #d32f2f; } .other { background: #607d8b; }
+.amount { font-size: 22px; font-weight: bold; margin-top: 5px; }
 
-/* Profile Layout */
-.profile-main-card { background: white; padding: 25px; border-radius: 8px; display: flex; gap: 30px; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 20px; }
-.profile-img-box img { width: 150px; height: 180px; border: 2px solid #003366; object-fit: cover; }
-.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.info-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+/* Profile (image_84f199.png Style) */
+.profile-main { background: white; padding: 25px; border-radius: 8px; display: flex; gap: 30px; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 20px; border: 1px solid #ddd; }
+.p-img-container img { width: 140px; height: 170px; border: 2px solid #003366; object-fit: cover; }
+.info-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.info-card { background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: 1px solid #ddd; }
 .info-card h3 { background: #003366; color: white; padding: 10px 15px; font-size: 14px; }
-.info-card p { padding: 8px 15px; border-bottom: 1px solid #eee; font-size: 14px; }
+.i-row { padding: 10px 15px; border-bottom: 1px solid #eee; font-size: 14px; }
 
-/* Result Chart (image_84f175.png অনুযায়ী) */
-.bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 250px; background: white; padding: 20px; border-radius: 8px; }
-.bar-item { width: 15%; display: flex; flex-direction: column; align-items: center; }
-.bar { width: 100%; border-radius: 5px 5px 0 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; color: white; font-weight: bold; font-size: 12px; }
-.fall24 { background: #69f0ae; } .spring25 { background: #f48fb1; } .summer25 { background: #d4e157; } .fall25 { background: #4dd0e1; } .spring26 { background: #9575cd; }
+/* Graph */
+.bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 220px; background: white; padding: 20px; border-radius: 8px; border: 1px solid #ddd; }
+.bar-group { text-align: center; width: 15%; }
+.bar { width: 100%; border-radius: 4px 4px 0 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 8px; color: white; font-weight: bold; font-size: 11px; }
+.g-fall { background: #69f0ae; } .g-spring { background: #f48fb1; } .g-summer { background: #d4e157; } .g-fall25 { background: #4dd0e1; } .g-spring26 { background: #9575cd; }
 
-/* Mobile Responsive */
+/* Mobile */
 @media (max-width: 768px) {
     .portal-container { flex-direction: column; }
     .sidebar { width: 100%; height: auto; position: relative; }
     .sidebar-menu { display: flex; overflow-x: auto; }
-    .sidebar-menu li { white-space: nowrap; border-bottom: none; border-right: 1px solid rgba(255,255,255,0.1); }
     .main-content { margin-left: 0; }
-    .info-grid { grid-template-columns: 1fr; }
-    .profile-main-card { flex-direction: column; text-align: center; }
+    .info-layout { grid-template-columns: 1fr; }
+    .profile-main { flex-direction: column; text-align: center; }
 }
