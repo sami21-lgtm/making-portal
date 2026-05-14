@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daffodil International University - Student Portal</title>
+    <title>DIU Student Portal - Md. Emtiaz Hossain Sami</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,104 +11,105 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-header">
+                <div class="diu-logo-box">
+                    <img src="download (7).jpg" alt="DIU">
+                </div>
                 <h2>Daffodil University</h2>
-                <span>Student Portal</span>
+                <p>Student Portal</p>
             </div>
             <ul class="sidebar-menu">
-                <li id="menu-dashboard" class="active" onclick="switchTab('dashboard')">Dashboard</li>
-                <li id="menu-profile" onclick="switchTab('profile')">Student Profile</li>
-                <li id="menu-academic" onclick="switchTab('academic')">Academic</li>
-                <li id="menu-result" onclick="switchTab('result')">Result</li>
-                <li id="menu-routine" onclick="switchTab('routine')">Routine</li>
+                <li id="menu-dashboard" class="active" onclick="switchTab('dashboard')">📊 Dashboard</li>
+                <li id="menu-profile" onclick="switchTab('profile')">👤 Student Profile</li>
+                <li id="menu-academic" onclick="switchTab('academic')">🎓 Academic</li>
+                <li id="menu-result" onclick="switchTab('result')">📈 Result</li>
+                <li id="menu-routine" onclick="switchTab('routine')">📅 Routine</li>
             </ul>
         </div>
 
         <!-- Main Content -->
         <div class="main-content">
             <div class="header-bar">
-                <div class="university-info">
+                <div class="uni-name">
                     <h1>Daffodil International University</h1>
                     <p>Student Portal</p>
                 </div>
-                <div class="user-meta">
-                    <div class="user-text">
-                        <span class="user-name">Md. Emtiaz Hossain Sami</span><br>
-                        <span class="user-logout">Logout</span>
-                    </div>
+                <div class="user-top">
+                    <span class="u-name">Md. Emtiaz Hossain Sami</span>
+                    <button class="logout-btn">Logout</button>
                 </div>
             </div>
 
-            <div class="content-body">
-                <!-- DASHBOARD SECTION -->
+            <div class="content-area">
+                <!-- DASHBOARD -->
                 <div id="tab-dashboard" class="tab-content">
-                    <div class="section-header">Dashboard</div>
-                    <div class="dashboard-grid">
-                        <div class="stat-card payable">
+                    <div class="section-title">Dashboard</div>
+                    <div class="dash-grid">
+                        <div class="card payable">
                             <label>Total Payable</label>
-                            <div class="value">408,668.00</div>
+                            <div class="amount">408,668.00</div>
                         </div>
-                        <div class="stat-card paid">
+                        <div class="card paid">
                             <label>Total Paid</label>
-                            <div class="value">442,568.00</div>
+                            <div class="amount">442,568.00</div>
                         </div>
-                        <div class="stat-card due">
+                        <div class="card due">
                             <label>Total Due</label>
-                            <div class="value">-33,900.00</div>
+                            <div class="amount">-33,900.00</div>
                         </div>
-                        <div class="stat-card other">
+                        <div class="card other">
                             <label>Total Other</label>
-                            <div class="value">0.00</div>
+                            <div class="amount">0.00</div>
                         </div>
                     </div>
-                    <div class="routine-notice">
-                        <strong>Today's Routine - Wednesday</strong>
+                    <div class="routine-card">
+                        <h3>📅 Today's Routine - Wednesday</h3>
                         <p>No routine available for today.</p>
                     </div>
                 </div>
 
-                <!-- PROFILE SECTION -->
+                <!-- PROFILE (image_84f199.png অনুযায়ী) -->
                 <div id="tab-profile" class="tab-content hidden">
-                    <div class="section-header">Student Profile</div>
-                    <div class="profile-main-card">
-                        <div class="profile-img-box">
-                            <img src="Md.Emtiaz Hoosain Sami.jpg" alt="Profile">
+                    <div class="section-title">Student Profile</div>
+                    <div class="profile-main">
+                        <div class="p-img-container">
+                            <img src="Md.Emtiaz Hoosain Sami.jpg" alt="Sami">
                         </div>
-                        <div class="profile-basic">
+                        <div class="p-basic">
                             <h2 id="pName">Md. Emtiaz Hossain Sami</h2>
-                            <p><strong>Student ID:</strong> 242-35-744</p>
-                            <p><strong>Department:</strong> Software Engineering (SWE)</p>
-                            <p><strong>Program:</strong> B.Sc. in SWE</p>
-                            <p><strong>Batch:</strong> 43rd</p>
+                            <p><strong>Student ID:</strong> <span id="pId">242-35-744</span></p>
+                            <p><strong>Department:</strong> <span id="pDept">Software Engineering (SWE)</span></p>
+                            <p><strong>Program:</strong> <span id="pProgram">B.Sc. in SWE</span></p>
+                            <p><strong>Batch:</strong> <span id="pBatch">43rd</span></p>
                         </div>
                     </div>
-                    <div class="info-grid">
+
+                    <div class="info-layout">
                         <div class="info-card">
                             <h3>Personal Information</h3>
-                            <p><strong>Father's Name:</strong> Md. Emarat Hossian Mollah</p>
-                            <p><strong>Mother's Name:</strong> Sabrina Sultana</p>
-                            <p><strong>Blood Group:</strong> B+</p>
-                            <p><strong>Gender:</strong> Male</p>
+                            <div class="i-row"><strong>Father's Name:</strong> <span id="pFather">Md. Emarat Hossian Mollah</span></div>
+                            <div class="i-row"><strong>Mother's Name:</strong> <span id="pMother">Sabrina Sultana</span></div>
+                            <div class="i-row"><strong>Blood Group:</strong> <span id="pBlood">B+</span></div>
+                            <div class="i-row"><strong>Gender:</strong> <span id="pGender">Male</span></div>
                         </div>
                         <div class="info-card">
                             <h3>Contact Information</h3>
-                            <p><strong>Email:</strong> sami242-35-744@diu.edu.bd</p>
-                            <p><strong>Phone:</strong> 01998453990</p>
-                            <p><strong>Address:</strong> Dhaka, Bangladesh</p>
+                            <div class="i-row"><strong>Email:</strong> <span id="pEmail">sami242-35-744@diu.edu.bd</span></div>
+                            <div class="i-row"><strong>Phone:</strong> <span id="pPhone">01998453990</span></div>
+                            <div class="i-row"><strong>Address:</strong> <span id="pAddress">Dhaka, Bangladesh</span></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- RESULT SECTION -->
+                <!-- RESULT (image_84f175.png অনুযায়ী) -->
                 <div id="tab-result" class="tab-content hidden">
-                    <div class="section-header">Semester Wise Result</div>
-                    <div class="chart-container">
-                        <p>Semester wise CGPA Performance</p>
+                    <div class="section-title">Semester Wise Result</div>
+                    <div class="graph-box">
                         <div class="bar-chart">
-                            <div class="bar-item"><div class="bar fall24" style="height: 84%;"><span>3.38</span></div><label>Fall 2024</label></div>
-                            <div class="bar-item"><div class="bar spring25" style="height: 78%;"><span>3.13</span></div><label>Spring 2025</label></div>
-                            <div class="bar-item"><div class="bar summer25" style="height: 94%;"><span>3.77</span></div><label>Summer 2025</label></div>
-                            <div class="bar-item"><div class="bar fall25" style="height: 88%;"><span>3.54</span></div><label>Fall 2025</label></div>
-                            <div class="bar-item"><div class="bar spring26" style="height: 92%;"><span>3.68</span></div><label>Spring 2026</label></div>
+                            <div class="bar-group"><div class="bar g-fall" style="height: 84%;"><span>3.38</span></div><p>Fall 24</p></div>
+                            <div class="bar-group"><div class="bar g-spring" style="height: 78%;"><span>3.13</span></div><p>Spring 25</p></div>
+                            <div class="bar-group"><div class="bar g-summer" style="height: 94%;"><span>3.77</span></div><p>Summer 25</p></div>
+                            <div class="bar-group"><div class="bar g-fall25" style="height: 88%;"><span>3.54</span></div><p>Fall 25</p></div>
+                            <div class="bar-group"><div class="bar g-spring26" style="height: 92%;"><span>3.68</span></div><p>Spring 26</p></div>
                         </div>
                     </div>
                 </div>
