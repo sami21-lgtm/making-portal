@@ -3,162 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daffodil University - Student Portal</title>
+    <title>Daffodil International University - Student Portal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- LOGIN PAGE -->
-    <div class="login-container active" id="loginPage">
-        <div class="login-background"></div>
-        <div class="login-box">
-            <div class="login-header">
-                <!-- লোগো ইমেজ ট্যাগটি এখানে ফিক্স করা হয়েছে -->
-                <div class="logo">
-                    <img src="download (7).jpg" alt="DIU Logo" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-                </div>
-                <h1>Daffodil University</h1>
-                <p>Student Portal Login</p>
-            </div>
-            <!-- onsubmit ইভেন্টটি জাভাস্ক্রিপ্ট ফাংশন handleLogin কে কল করবে -->
-            <form onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label for="studentId">Student ID</label>
-                    <input type="text" id="studentId" placeholder="Enter your ID" value="242-35-744" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter your password" value="1234" required>
-                </div>
-                <button type="submit" class="login-btn">Sign In</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- PORTAL PAGE -->
-    <div class="portal-container" id="portalPage">
-        <!-- SIDEBAR -->
+    <div class="portal-container">
+        <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <div class="sidebar-logo">
-                    <span>📚</span>
-                    <span>DIU Portal</span>
-                </div>
+                <h2>Daffodil University</h2>
+                <span>Student Portal</span>
             </div>
             <ul class="sidebar-menu">
-                <li><a onclick="showSection('dashboard')" class="nav-link active"><span>📊</span> <span>Dashboard</span></a></li>
-                <li><a onclick="showSection('profile')" class="nav-link"><span>👤</span> <span>Profile</span></a></li>
-                <li><a onclick="showSection('schedule')" class="nav-link"><span>📅</span> <span>Schedule</span></a></li>
-                <li><a onclick="showSection('results')" class="nav-link"><span>📈</span> <span>Results</span></a></li>
-                <li><a onclick="showSection('courses')" class="nav-link"><span>📖</span> <span>Courses</span></a></li>
-                <li><a onclick="showSection('notices')" class="nav-link"><span>📢</span> <span>Notices</span></a></li>
+                <li id="menu-dashboard" class="active" onclick="switchTab('dashboard')">Dashboard</li>
+                <li id="menu-profile" onclick="switchTab('profile')">Student Profile</li>
+                <li id="menu-academic" onclick="switchTab('academic')">Academic</li>
+                <li id="menu-result" onclick="switchTab('result')">Result</li>
+                <li id="menu-routine" onclick="switchTab('routine')">Routine</li>
             </ul>
-            <button class="logout-btn" onclick="logout()">🚪 Logout</button>
         </div>
 
-        <!-- MAIN CONTENT -->
+        <!-- Main Content -->
         <div class="main-content">
-            <!-- TOP BAR -->
-            <div class="top-bar">
-                <h2 id="pageTitle">Dashboard</h2>
-                <div class="user-info">
-                    <div class="user-details">
-                        <p class="name" id="userName">Md. Emtiaz Hossain Sami</p>
-                        <p class="role">Software Engineering</p>
+            <div class="header-bar">
+                <div class="university-info">
+                    <h1>Daffodil International University</h1>
+                    <p>Student Portal</p>
+                </div>
+                <div class="user-meta">
+                    <div class="user-text">
+                        <span class="user-name">Md. Emtiaz Hossain Sami</span><br>
+                        <span class="user-logout">Logout</span>
                     </div>
-                    <div class="user-avatar">ES</div>
                 </div>
             </div>
 
-            <!-- CONTENT AREA -->
-            <div class="content-area">
-                <!-- DASHBOARD -->
-                <div class="page-section active" id="dashboard">
-                    <div class="stats-container">
-                        <div class="stat-card">
-                            <div class="stat-value">408,668.00</div>
-                            <div class="stat-label">Total Payable</div>
+            <div class="content-body">
+                <!-- DASHBOARD SECTION -->
+                <div id="tab-dashboard" class="tab-content">
+                    <div class="section-header">Dashboard</div>
+                    <div class="dashboard-grid">
+                        <div class="stat-card payable">
+                            <label>Total Payable</label>
+                            <div class="value">408,668.00</div>
                         </div>
-                        <div class="stat-card accent">
-                            <div class="stat-value">442,568.00</div>
-                            <div class="stat-label">Total Paid</div>
+                        <div class="stat-card paid">
+                            <label>Total Paid</label>
+                            <div class="value">442,568.00</div>
                         </div>
-                        <div class="stat-card warning">
-                            <div class="stat-value">-33,900.00</div>
-                            <div class="stat-label">Total Due</div>
+                        <div class="stat-card due">
+                            <label>Total Due</label>
+                            <div class="value">-33,900.00</div>
                         </div>
-                        <div class="stat-card danger">
-                            <div class="stat-value">0.00</div>
-                            <div class="stat-label">Total Other</div>
-                        </div>
-                    </div>
-
-                    <div class="chart-container">
-                        <h3>Semester Wise Result</h3>
-                        <div class="bar-chart">
-                            <div class="bar" style="height: 84.5%;"><span class="bar-value">3.38</span><span class="bar-label">Fall 2024</span></div>
-                            <div class="bar" style="height: 78.2%;"><span class="bar-value">3.13</span><span class="bar-label">Spring 2025</span></div>
-                            <div class="bar" style="height: 94.2%;"><span class="bar-value">3.77</span><span class="bar-label">Summer 2025</span></div>
-                            <div class="bar" style="height: 88.5%;"><span class="bar-value">3.54</span><span class="bar-label">Fall 2025</span></div>
-                            <div class="bar" style="height: 92.0%;"><span class="bar-value">3.68</span><span class="bar-label">Spring 2026</span></div>
+                        <div class="stat-card other">
+                            <label>Total Other</label>
+                            <div class="value">0.00</div>
                         </div>
                     </div>
-
-                    <div class="chart-container">
-                        <h3>Today's Routine - Wednesday</h3>
-                        <div style="padding: 20px; color: var(--text-light);">
-                            <p>No routine available for today.</p>
-                        </div>
+                    <div class="routine-notice">
+                        <strong>Today's Routine - Wednesday</strong>
+                        <p>No routine available for today.</p>
                     </div>
                 </div>
 
-                <!-- PROFILE -->
-                <div class="page-section" id="profile">
-                    <div class="profile-card">
-                        <div class="profile-header">
-                            <div class="profile-avatar">👨</div>
+                <!-- PROFILE SECTION -->
+                <div id="tab-profile" class="tab-content hidden">
+                    <div class="section-header">Student Profile</div>
+                    <div class="profile-main-card">
+                        <div class="profile-img-box">
+                            <img src="Md.Emtiaz Hoosain Sami.jpg" alt="Profile">
+                        </div>
+                        <div class="profile-basic">
                             <h2 id="pName">Md. Emtiaz Hossain Sami</h2>
-                            <p><span id="pId">242-35-744</span> | Batch <span id="pBatch">43rd</span></p>
+                            <p><strong>Student ID:</strong> 242-35-744</p>
+                            <p><strong>Department:</strong> Software Engineering (SWE)</p>
+                            <p><strong>Program:</strong> B.Sc. in SWE</p>
+                            <p><strong>Batch:</strong> 43rd</p>
                         </div>
-                        <div class="profile-content">
-                            <div class="profile-section">
-                                <h4>Personal Information</h4>
-                                <div class="profile-row">
-                                    <div class="profile-item"><label>Father's Name</label><span id="pFather">Md. Emarat Hossian Mollah</span></div>
-                                    <div class="profile-item"><label>Mother's Name</label><span id="pMother">Sabrina Sultana</span></div>
-                                </div>
-                                <div class="profile-row">
-                                    <div class="profile-item"><label>Blood Group</label><span id="pBlood">B+</span></div>
-                                    <div class="profile-item"><label>Gender</label><span id="pGender">Male</span></div>
-                                </div>
-                                <div class="profile-row">
-                                    <div class="profile-item"><label>Email</label><span id="pEmail">sami242-35-744@diu.edu.bd</span></div>
-                                    <div class="profile-item"><label>Phone</label><span id="pPhone">01998453990</span></div>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>Personal Information</h3>
+                            <p><strong>Father's Name:</strong> Md. Emarat Hossian Mollah</p>
+                            <p><strong>Mother's Name:</strong> Sabrina Sultana</p>
+                            <p><strong>Blood Group:</strong> B+</p>
+                            <p><strong>Gender:</strong> Male</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>Contact Information</h3>
+                            <p><strong>Email:</strong> sami242-35-744@diu.edu.bd</p>
+                            <p><strong>Phone:</strong> 01998453990</p>
+                            <p><strong>Address:</strong> Dhaka, Bangladesh</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- RESULTS -->
-                <div class="page-section" id="results">
-                    <h3 style="margin-bottom: 20px; color: var(--primary);">Academic Results</h3>
-                    <div class="results-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Semester</th>
-                                    <th>GPA</th>
-                                    <th>Grade</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>Fall 2024</td><td>3.38</td><td><span class="grade-badge grade-b">B+</span></td></tr>
-                                <tr><td>Spring 2025</td><td>3.13</td><td><span class="grade-badge grade-b">B</span></td></tr>
-                                <tr><td>Summer 2025</td><td>3.77</td><td><span class="grade-badge grade-a">A-</span></td></tr>
-                                <tr><td>Fall 2025</td><td>3.54</td><td><span class="grade-badge grade-a">A-</span></td></tr>
-                                <tr><td>Spring 2026</td><td>3.68</td><td><span class="grade-badge grade-a">A-</span></td></tr>
-                            </tbody>
-                        </table>
+                <!-- RESULT SECTION -->
+                <div id="tab-result" class="tab-content hidden">
+                    <div class="section-header">Semester Wise Result</div>
+                    <div class="chart-container">
+                        <p>Semester wise CGPA Performance</p>
+                        <div class="bar-chart">
+                            <div class="bar-item"><div class="bar fall24" style="height: 84%;"><span>3.38</span></div><label>Fall 2024</label></div>
+                            <div class="bar-item"><div class="bar spring25" style="height: 78%;"><span>3.13</span></div><label>Spring 2025</label></div>
+                            <div class="bar-item"><div class="bar summer25" style="height: 94%;"><span>3.77</span></div><label>Summer 2025</label></div>
+                            <div class="bar-item"><div class="bar fall25" style="height: 88%;"><span>3.54</span></div><label>Fall 2025</label></div>
+                            <div class="bar-item"><div class="bar spring26" style="height: 92%;"><span>3.68</span></div><label>Spring 2026</label></div>
+                        </div>
                     </div>
                 </div>
             </div>
