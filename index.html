@@ -12,14 +12,15 @@
         <div class="login-background"></div>
         <div class="login-box">
             <div class="login-header">
-                <!-- আপনার লোগো এখানে সেট করা হয়েছে -->
-                <div class="logo-img-container">
-                    <img src="download (7).jpg" alt="DIU Logo" class="portal-logo" onerror="this.alt='📚';">
+                <!-- লোগো ইমেজ ট্যাগটি এখানে ফিক্স করা হয়েছে -->
+                <div class="logo">
+                    <img src="download (7).jpg" alt="DIU Logo" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                 </div>
                 <h1>Daffodil University</h1>
                 <p>Student Portal Login</p>
             </div>
-            <form id="portalLoginForm">
+            <!-- onsubmit ইভেন্টটি জাভাস্ক্রিপ্ট ফাংশন handleLogin কে কল করবে -->
+            <form onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <label for="studentId">Student ID</label>
                     <input type="text" id="studentId" placeholder="Enter your ID" value="242-35-744" required>
@@ -56,6 +57,7 @@
 
         <!-- MAIN CONTENT -->
         <div class="main-content">
+            <!-- TOP BAR -->
             <div class="top-bar">
                 <h2 id="pageTitle">Dashboard</h2>
                 <div class="user-info">
@@ -67,6 +69,7 @@
                 </div>
             </div>
 
+            <!-- CONTENT AREA -->
             <div class="content-area">
                 <!-- DASHBOARD -->
                 <div class="page-section active" id="dashboard">
@@ -113,11 +116,25 @@
                     <div class="profile-card">
                         <div class="profile-header">
                             <div class="profile-avatar">👨</div>
-                            <h2>Md. Emtiaz Hossain Sami</h2>
-                            <p>242-35-744 | Batch 43rd</p>
+                            <h2 id="pName">Md. Emtiaz Hossain Sami</h2>
+                            <p><span id="pId">242-35-744</span> | Batch <span id="pBatch">43rd</span></p>
                         </div>
                         <div class="profile-content">
-                            <p style="text-align: center; color: var(--text-light);">Profile details loading...</p>
+                            <div class="profile-section">
+                                <h4>Personal Information</h4>
+                                <div class="profile-row">
+                                    <div class="profile-item"><label>Father's Name</label><span id="pFather">Md. Emarat Hossian Mollah</span></div>
+                                    <div class="profile-item"><label>Mother's Name</label><span id="pMother">Sabrina Sultana</span></div>
+                                </div>
+                                <div class="profile-row">
+                                    <div class="profile-item"><label>Blood Group</label><span id="pBlood">B+</span></div>
+                                    <div class="profile-item"><label>Gender</label><span id="pGender">Male</span></div>
+                                </div>
+                                <div class="profile-row">
+                                    <div class="profile-item"><label>Email</label><span id="pEmail">sami242-35-744@diu.edu.bd</span></div>
+                                    <div class="profile-item"><label>Phone</label><span id="pPhone">01998453990</span></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
