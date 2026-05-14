@@ -8,13 +8,15 @@
 </head>
 <body>
 
+    <!-- ================= LOGIN SCREEN ================= -->
     <div id="loginPage" class="login-body">
         <div class="login-box">
             <div class="login-header">
-                <img src="download (7).jpg" alt="DIU Logo" class="login-logo" onerror="this.src='https://blog.daffodilvarsity.edu.bd/images/logo.png'">
+                <img src="https://blog.daffodilvarsity.edu.bd/images/logo.png" alt="DIU Logo" class="login-logo">
                 <h2>Welcome to Student Portal</h2>
             </div>
-            <form id="loginForm" onsubmit="event.preventDefault();">
+            <!-- form onsubmit প্রিভেন্ট করে সরাসরি checkLogin ফাংশন কল করবে -->
+            <form id="loginForm" onsubmit="event.preventDefault(); checkLogin();">
                 <div class="input-group">
                     <label>Student ID or Registration ID</label>
                     <input type="text" id="studentId" value="242-35-744" required>
@@ -29,8 +31,10 @@
         </div>
     </div>
 
+    <!-- ================= PORTAL INTERFACE (Initially Hidden) ================= -->
     <div id="portalInterface" class="portal-container hidden">
         
+        <!-- Header -->
         <div class="header">
             <div class="header-logo">
                 <h2>Daffodil International University</h2>
@@ -44,6 +48,7 @@
         </div>
 
         <div class="main-wrapper">
+            <!-- Sidebar -->
             <div class="sidebar">
                 <ul class="sidebar-menu">
                     <li id="menu-dashboard" class="active" onclick="switchTab('dashboard')">Dashboard</li>
@@ -54,35 +59,25 @@
                 </ul>
             </div>
 
+            <!-- Content Area -->
             <div class="content">
                 
+                <!-- DASHBOARD -->
                 <div id="tab-dashboard" class="tab-content">
                     <div class="page-title">Dashboard</div>
                     <div class="dashboard-cards">
-                        <div class="d-card text-payable">
-                            <h3>Total Payable</h3>
-                            <div class="d-card-value">408,668.00</div>
-                        </div>
-                        <div class="d-card text-paid">
-                            <h3>Total Paid</h3>
-                            <div class="d-card-value">442,568.00</div>
-                        </div>
-                        <div class="d-card text-due">
-                            <h3>Total Due</h3>
-                            <div class="d-card-value">-33,900.00</div>
-                        </div>
-                        <div class="d-card text-other">
-                            <h3>Total Other</h3>
-                            <div class="d-card-value">0.00</div>
-                        </div>
+                        <div class="d-card text-payable"><h3>Total Payable</h3><div class="d-card-value">408,668.00</div></div>
+                        <div class="d-card text-paid"><h3>Total Paid</h3><div class="d-card-value">442,568.00</div></div>
+                        <div class="d-card text-due"><h3>Total Due</h3><div class="d-card-value">-33,900.00</div></div>
+                        <div class="d-card text-other"><h3>Total Other</h3><div class="d-card-value">0.00</div></div>
                     </div>
-                    
                     <div class="card-box">
                         <h4>Today's Routine - Wednesday</h4>
                         <p style="color: #666; font-size: 14px; padding: 10px 0;">No routine available for today.</p>
                     </div>
                 </div>
 
+                <!-- PROFILE -->
                 <div id="tab-profile" class="tab-content hidden">
                     <div class="page-title">Student Profile</div>
                     <div class="profile-card">
@@ -117,48 +112,23 @@
                     </div>
                 </div>
 
-                <div id="tab-academic" class="tab-content hidden">
-                    <div class="page-title">Academic Details</div>
-                    <div class="card-box">
-                        <p style="margin-bottom: 8px;"><strong>Current Semester:</strong> Summer 2026</p>
-                        <p><strong>Registration Status:</strong> Completed</p>
-                    </div>
-                </div>
-
+                <!-- ACADEMIC, RESULT, ROUTINE (সহজ করার জন্য রাখা হয়েছে) -->
+                <div id="tab-academic" class="tab-content hidden"><div class="page-title">Academic</div><div class="card-box">Completed</div></div>
+                
                 <div id="tab-result" class="tab-content hidden">
-                    <div class="page-title">Semester Wise Result</div>
+                    <div class="page-title">Result</div>
                     <div class="card-box">
-                        <h4 style="margin-bottom: 20px; color: #333;">Semester-wise CGPA Performance</h4>
                         <div class="chart-container">
-                            <div class="bar-wrapper"><div class="bar bar-1" style="height: 84.5%;"><span>3.38</span></div><div class="bar-label">Fall 2024</div></div>
-                            <div class="bar-wrapper"><div class="bar bar-2" style="height: 78.2%;"><span>3.13</span></div><div class="bar-label">Spring 2025</div></div>
-                            <div class="bar-wrapper"><div class="bar bar-3" style="height: 94.2%;"><span>3.77</span></div><div class="bar-label">Summer 2025</div></div>
-                            <div class="bar-wrapper"><div class="bar bar-4" style="height: 88.5%;"><span>3.54</span></div><div class="bar-label">Fall 2025</div></div>
-                            <div class="bar-wrapper"><div class="bar bar-5" style="height: 92.0%;"><span>3.68</span></div><div class="bar-label">Spring 2026</div></div>
+                            <div class="bar-wrapper"><div class="bar bar-1" style="height: 84%;"><span>3.38</span></div><div class="bar-label">Fall 24</div></div>
+                            <div class="bar-wrapper"><div class="bar bar-2" style="height: 78%;"><span>3.13</span></div><div class="bar-label">Spring 25</div></div>
+                            <div class="bar-wrapper"><div class="bar bar-3" style="height: 94%;"><span>3.77</span></div><div class="bar-label">Summer 25</div></div>
+                            <div class="bar-wrapper"><div class="bar bar-4" style="height: 88%;"><span>3.54</span></div><div class="bar-label">Fall 25</div></div>
+                            <div class="bar-wrapper"><div class="bar bar-5" style="height: 92%;"><span>3.68</span></div><div class="bar-label">Spring 26</div></div>
                         </div>
                     </div>
                 </div>
 
-                <div id="tab-routine" class="tab-content hidden">
-                    <div class="page-title">Class Routine</div>
-                    <div class="card-box">
-                        <div style="margin-bottom: 15px;">
-                            <label><strong>Select Semester:</strong> </label>
-                            <select style="padding: 6px 12px; border-radius: 4px; border: 1px solid #cbd5e1;">
-                                <option>Summer 2026, 262</option>
-                            </select>
-                        </div>
-                        <table class="routine-table">
-                            <tr><th>Saturday</th><td>No Classes Available</td></tr>
-                            <tr><th>Sunday</th><td>No Classes Available</td></tr>
-                            <tr><th>Monday</th><td>No Classes Available</td></tr>
-                            <tr><th>Tuesday</th><td>No Classes Available</td></tr>
-                            <tr><th>Wednesday</th><td>No Classes Available</td></tr>
-                            <tr><th>Thursday</th><td>No Classes Available</td></tr>
-                            <tr><th>Friday</th><td>No Classes Available</td></tr>
-                        </table>
-                    </div>
-                </div>
+                <div id="tab-routine" class="tab-content hidden"><div class="page-title">Routine</div><div class="card-box">No Classes</div></div>
 
             </div>
         </div>
