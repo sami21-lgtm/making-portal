@@ -1,4 +1,3 @@
-// আপনার সকল সঠিক তথ্য
 const studentData = {
     id: "242-35-744",
     password: "1234",
@@ -15,86 +14,58 @@ const studentData = {
     address: "Dhaka, Bangladesh"
 };
 
-// এই ফাংশনটি স্বয়ংক্রিয়ভাবে বাটনের সাথে কানেক্ট হবে
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("Portal Script Loaded!");
+// লগইন ফাংশন
+function checkLogin() {
+    const idInput = document.getElementById('studentId').value.trim();
+    const passInput = document.getElementById('password').value.trim();
+    const errorMsg = document.getElementById('errorMsg');
 
-    // ১. লগইন বাটন ও ফর্ম খুঁজে বের করা
-    const loginForm = document.getElementById('loginForm');
-    const loginBtn = document.querySelector('.login-btn');
-
-    // ২. লগইন করার মেইন ফাংশন
-    function performLogin(e) {
-        if(e) e.preventDefault(); // পেজ রিফ্রেশ হওয়া আটকাবে
+    if (idInput === studentData.id && passInput === studentData.password) {
+        document.getElementById('loginPage').style.display = 'none';
+        const portal = document.getElementById('portalInterface');
+        portal.classList.remove('hidden');
+        portal.style.display = 'flex';
         
-        const idInput = document.getElementById('studentId');
-        const passInput = document.getElementById('password');
-        const errorMsg = document.getElementById('errorMsg');
-
-        // ভ্যালিডেশন চেক
-        if (idInput.value.trim() === studentData.id && passInput.value.trim() === studentData.password) {
-            // লগইন পেজ লুকিয়ে পোর্টাল দেখাবে
-            document.getElementById('loginPage').style.display = 'none';
-            document.getElementById('portalInterface').classList.remove('hidden');
-            document.getElementById('portalInterface').style.display = 'flex';
-            
-            loadProfileData(); // তথ্য লোড করবে
-        } else {
-            if (errorMsg) {
-                errorMsg.innerText = "Invalid Student ID or Password!";
-            } else {
-                alert("Invalid Student ID or Password!");
-            }
-        }
+        loadProfileData(); // প্রোফাইল ডাটা লোড
+    } else {
+        errorMsg.innerText = "Invalid ID or Password!";
     }
+}
 
-    // ৩. বাটন এবং এন্টার কী-তে ইভেন্ট লিসেনার সেট করা
-    if (loginForm) {
-        loginForm.addEventListener('submit', performLogin);
-    } else if (loginBtn) {
-        loginBtn.addEventListener('click', performLogin);
-    }
+// প্রোফাইলে ডাটা বসানো
+function loadProfileData() {
+    document.getElementById("headerName").innerText = studentData.name;
+    document.getElementById("headerId").innerText = studentData.id;
+    document.getElementById("pName").innerText = studentData.name;
+    document.getElementById("pId").innerText = studentData.id;
+    document.getElementById("pDept").innerText = studentData.dept;
+    document.getElementById("pProgram").innerText = studentData.program;
+    document.getElementById("pBatch").innerText = studentData.batch;
+    document.getElementById("pFather").innerText = studentData.father;
+    document.getElementById("pMother").innerText = studentData.mother;
+    document.getElementById("pBlood").innerText = studentData.blood;
+    document.getElementById("pGender").innerText = studentData.gender;
+    document.getElementById("pEmail").innerText = studentData.email;
+    document.getElementById("pPhone").innerText = studentData.phone;
+    document.getElementById("pAddress").innerText = studentData.address;
+}
 
-    // ৪. তথ্যগুলো ড্যাশ '-' এর জায়গায় বসানো
-    function loadProfileData() {
-        const fields = {
-            "headerName": studentData.name,
-            "headerId": studentData.id,
-            "pName": studentData.name,
-            "pId": studentData.id,
-            "pDept": studentData.dept,
-            "pProgram": studentData.program,
-            "pBatch": studentData.batch,
-            "pFather": studentData.father,
-            "pMother": studentData.mother,
-            "pBlood": studentData.blood,
-            "pGender": studentData.gender,
-            "pEmail": studentData.email,
-            "pPhone": studentData.phone,
-            "pAddress": studentData.address
-        };
+// ট্যাব সুইচিং
+function switchTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+    document.querySelectorAll('.sidebar-menu li').forEach(l => l.classList.remove('active'));
+    document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+    document.getElementById(`menu-${tabName}`).classList.add('active');
+}
 
-        for (let id in fields) {
-            const element = document.getElementById(id);
-            if (element) element.innerText = fields[id];
-        }
-    }
+// ইমেজ আপলোড
+function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = () => document.getElementById('profilePic').src = reader.result;
+    if(event.target.files[0]) reader.readAsDataURL(event.target.files[0]);
+}
 
-    // ট্যাব পরিবর্তন ও ইমেজ প্রিভিউ ফাংশন (গ্লোবাল রাখা হয়েছে)
-    window.switchTab = function(tabName) {
-        document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
-        document.querySelectorAll('.sidebar-menu li').forEach(l => l.classList.remove('active'));
-        document.getElementById(`tab-${tabName}`).classList.remove('hidden');
-        document.getElementById(`menu-${tabName}`).classList.add('active');
-    };
-
-    window.previewImage = function(event) {
-        const reader = new FileReader();
-        reader.onload = () => document.getElementById('profilePic').src = reader.result;
-        if(event.target.files[0]) reader.readAsDataURL(event.target.files[0]);
-    };
-
-    window.logout = function() {
-        location.reload(); // পেজ রিলোড করে আবার লগইন স্ক্রিনে আনবে
-    };
-});
+// লগআউট
+function logout() {
+    location.reload(); 
+}
