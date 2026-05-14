@@ -11,58 +11,50 @@ const studentData = {
     gender: "Male",
     email: "sami242-35-744@diu.edu.bd",
     phone: "01998453990",
-    address: "Dhaka, Bangladesh"
+    address: "Dhaka, Bangladesh",
+    // পেমেন্ট তথ্য (image_84f17e.png অনুযায়ী)
+    payable: "408,668.00",
+    paid: "442,568.00",
+    due: "-33,900.00",
+    other: "0.00"
 };
 
-function handleLogin(event) {
-    event.preventDefault();
-    const studentId = document.getElementById('studentId').value.trim();
-    const password = document.getElementById('password').value.trim();
+// পেজ লোড হওয়ার সাথে সাথে ডাটা সেট হবে
+window.onload = function() {
+    updatePortalInfo();
+};
 
-    if (studentId === studentData.id && password === studentData.password) {
-        // লগইন সফল হলে লগইন পেজ হাইড এবং পোর্টাল শো করবে
-        document.getElementById('loginPage').classList.remove('active');
-        document.getElementById('loginPage').style.display = 'none';
-        document.getElementById('portalPage').classList.add('active');
-        document.getElementById('portalPage').style.display = 'flex';
-        updateUserDisplay();
-    } else {
-        alert('ভুল আইডি বা পাসওয়ার্ড! আবার চেষ্টা করুন।');
-    }
+function updatePortalInfo() {
+    // ড্যাশবোর্ড কার্ড আপডেট
+    document.querySelector('.payable .value').innerText = studentData.payable;
+    document.querySelector('.paid .value').innerText = studentData.paid;
+    document.querySelector('.due .value').innerText = studentData.due;
+    document.querySelector('.other .value').innerText = studentData.other;
+
+    // প্রোফাইল সেকশন আপডেট (image_84f199.png অনুযায়ী)
+    document.getElementById('pName').innerText = studentData.name;
+    document.getElementById('pId').innerText = studentData.id;
+    document.getElementById('pDept').innerText = studentData.dept;
+    document.getElementById('pProgram').innerText = studentData.program;
+    document.getElementById('pBatch').innerText = studentData.batch;
+    
+    // পার্সোনাল ও কন্টাক্ট ইনফো
+    document.getElementById('pFather').innerText = studentData.father;
+    document.getElementById('pMother').innerText = studentData.mother;
+    document.getElementById('pBlood').innerText = studentData.blood;
+    document.getElementById('pGender').innerText = studentData.gender;
+    document.getElementById('pEmail').innerText = studentData.email;
+    document.getElementById('pPhone').innerText = studentData.phone;
+    document.getElementById('pAddress').innerText = studentData.address;
+
+    // হেডার এরিয়া নাম
+    document.querySelector('.user-name').innerText = studentData.name;
 }
 
-function updateUserDisplay() {
-    document.getElementById('userName').textContent = studentData.name;
-}
-
-function showSection(sectionId) {
-    // সব সেকশন হাইড করা
-    document.querySelectorAll('.page-section').forEach(section => {
-        section.classList.remove('active');
-    });
-
-    // সব লিঙ্কের একটিভ ক্লাস সরানো
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-    });
-
-    // নির্দিষ্ট সেকশন দেখানো
-    document.getElementById(sectionId).classList.add('active');
-
-    // টাইটেল আপডেট
-    const titles = {
-        'dashboard': 'Dashboard',
-        'profile': 'Student Profile',
-        'schedule': 'Class Schedule',
-        'results': 'Academic Results',
-        'courses': 'Enrolled Courses',
-        'notices': 'Notices'
-    };
-    document.getElementById('pageTitle').textContent = titles[sectionId] || 'Dashboard';
-}
-
-function logout() {
-    if (confirm('আপনি কি লগআউট করতে চান?')) {
-        location.reload(); // পেজ রিলোড করে আবার লগইন স্ক্রিনে নিয়ে যাবে
-    }
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+    document.querySelectorAll('.sidebar-menu li').forEach(li => li.classList.remove('active'));
+    
+    document.getElementById('tab-' + tabId).classList.remove('hidden');
+    document.getElementById('menu-' + tabId).classList.add('active');
 }
