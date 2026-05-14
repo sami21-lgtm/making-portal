@@ -20,46 +20,49 @@ function handleLogin(event) {
     const password = document.getElementById('password').value.trim();
 
     if (studentId === studentData.id && password === studentData.password) {
+        // লগইন সফল হলে লগইন পেজ হাইড এবং পোর্টাল শো করবে
         document.getElementById('loginPage').classList.remove('active');
+        document.getElementById('loginPage').style.display = 'none';
         document.getElementById('portalPage').classList.add('active');
-        updateProfileUI();
+        document.getElementById('portalPage').style.display = 'flex';
+        updateUserDisplay();
     } else {
-        alert('Invalid ID or Password!');
+        alert('ভুল আইডি বা পাসওয়ার্ড! আবার চেষ্টা করুন।');
     }
 }
 
-function updateProfileUI() {
-    // হেডার ও প্রোফাইল নাম
+function updateUserDisplay() {
     document.getElementById('userName').textContent = studentData.name;
-    
-    // প্রোফাইল সেকশনের তথ্য (যদি HTML-এ এই আইডিগুলো থাকে)
-    const fields = {
-        'pName': studentData.name,
-        'pId': studentData.id,
-        'pDept': studentData.dept,
-        'pFather': studentData.father,
-        'pMother': studentData.mother,
-        'pEmail': studentData.email,
-        'pPhone': studentData.phone
-    };
-
-    for (let id in fields) {
-        const element = document.getElementById(id);
-        if (element) element.textContent = fields[id];
-    }
 }
 
 function showSection(sectionId) {
-    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-    
+    // সব সেকশন হাইড করা
+    document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+    });
+
+    // সব লিঙ্কের একটিভ ক্লাস সরানো
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+    });
+
+    // নির্দিষ্ট সেকশন দেখানো
     document.getElementById(sectionId).classList.add('active');
-    if (event) event.currentTarget.classList.add('active');
-    
-    const titles = { 'dashboard': 'Dashboard', 'profile': 'Student Profile', 'results': 'Academic Results' };
-    document.getElementById('pageTitle').textContent = titles[sectionId] || 'Portal';
+
+    // টাইটেল আপডেট
+    const titles = {
+        'dashboard': 'Dashboard',
+        'profile': 'Student Profile',
+        'schedule': 'Class Schedule',
+        'results': 'Academic Results',
+        'courses': 'Enrolled Courses',
+        'notices': 'Notices'
+    };
+    document.getElementById('pageTitle').textContent = titles[sectionId] || 'Dashboard';
 }
 
 function logout() {
-    location.reload();
+    if (confirm('আপনি কি লগআউট করতে চান?')) {
+        location.reload(); // পেজ রিলোড করে আবার লগইন স্ক্রিনে নিয়ে যাবে
+    }
 }
